@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerBoost - AI-Powered Job Applications | Kelnic Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #2E5BFF;
+            --secondary: #1E3BB8;
+            --accent: #00C3FF;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #00D4A4;
+            --warning: #FF6B6B;
+            --professional: #2E5BFF;
+            --trust: #00C3FF;
+            --addictive: #FF6B6B;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fb;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 120px 0;
+            border-radius: 0 0 40px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.05"><path fill="white" d="M500,100C700,100,900,200,900,500s-200,400-400,400S100,800,100,500S300,100,500,100z"/></svg>') no-repeat center;
+            background-size: cover;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .feature-card {
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            height: 100%;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .feature-icon {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+        }
+        
+        .upload-area {
+            border: 2px dashed #d1d9ff;
+            border-radius: 12px;
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #f9faff;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .upload-area:hover, .upload-area.dragover {
+            border-color: var(--primary);
+            background-color: #eef2ff;
+        }
+        
+        .preview-image {
+            max-width: 200px;
+            border-radius: 10px;
+            margin: 10px auto;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .progress {
+            height: 12px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        
+        .ai-agent-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(46, 91, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .ai-agent-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pricing-card {
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 7px 15px rgba(46, 91, 255, 0.3);
+        }
+        
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .payment-methods img {
+            height: 30px;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+        
+        .stats-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stats-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+        
+        .chat-bubble {
+            background-color: #eef2ff;
+            border-radius: 20px;
+            padding: 15px 20px;
+            margin: 10px 0;
+            max-width: 80%;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .chat-bubble.ai {
+            background-color: var(--primary);
+            color: white;
+            margin-left: auto;
+        }
+        
+        .job-card {
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .step-indicator {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(46, 91, 255, 0.3);
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: var(--warning);
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .language-switcher {
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.2);
+            font-weight: 600;
+        }
+        
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            font-weight: 600;
+        }
+        
+        .addictive-element {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .revenue-chart {
+            height: 300px;
+        }
+        
+        .quick-stats {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .social-proof {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin-bottom: 20px;
+        }
+        
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .province-expansion {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .position-tracker {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+            margin-bottom: 20px;
+        }
+        
+        .cart-item {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-remove {
+            color: var(--warning);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .cart-item-remove:hover {
+            color: #dc3545;
+        }
+        
+        .demo-animation {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+        
+        .demo-step {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .demo-step.active {
+            opacity: 1;
+        }
+        
+        .demo-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .demo-progress {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .demo-progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+        }
+        
+        .demo-progress-dot.active {
+            background: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 80px 0;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .step-indicator {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .demo-animation {
+                height: 300px;
+            }
+            
+            .demo-icon {
+                font-size: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-rocket me-2"></i>CareerBoost
+            </a>
+            <div class="language-switcher me-3" id="languageSwitcher">
+                <span class="flag">🇿🇦</span> EN
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works">How It Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">AI Agents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#pricing">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Success Stories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#positions">Job Positions</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <div class="position-relative me-3">
+                        <a href="#" class="text-dark" data-bs-toggle="modal" data-bs-target="#cartModal">
+                            <i class="fas fa-shopping-cart fa-lg"></i>
+                            <span class="cart-badge" id="cartCount">0</span>
+                        </a>
+                    </div>
+                    <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                    <button class="btn btn-primary addictive-element" data-bs-toggle="modal" data-bs-target="#signupModal">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="trust-badges mb-4">
+                        <span class="trust-badge"><i class="fas fa-lock me-2 text-primary"></i>Secure & Private</span>
+                        <span class="trust-badge"><i class="fas fa-bolt me-2 text-warning"></i>Fast Results</span>
+                        <span class="trust-badge"><i class="fas fa-check-circle me-2 text-success"></i>14-Day Guarantee</span>
+                    </div>
+                    <h1 class="display-4 fw-bold mb-4">Land Your Dream Job 5x Faster with AI</h1>
+                    <p class="lead mb-4">Upload your resume once. Our 27 AI agents work 24/7 to rewrite your CV, apply to jobs, and get you hired. Average time to employment: 14 days.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <button class="btn btn-light btn-lg addictive-element" data-bs-toggle="modal" data-bs-target="#signupModal">Start Free Trial</button>
+                        <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#demoModal"><i class="fas fa-play me-2"></i>Watch Demo</button>
+                    </div>
+                    <div class="social-proof mt-4">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <div class="quick-stats">2,154+</div>
+                                <small>Jobs Found This Week</small>
+                            </div>
+                            <div class="col-4">
+                                <div class="quick-stats">97%</div>
+                                <small>Success Rate</small>
+                            </div>
+                            <div class="col-4">
+                                <div class="quick-stats">14 Days</div>
+                                <small>Avg. Time to Hire</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="position-relative">
+                        <!-- Demo Animation -->
+                        <div class="demo-animation">
+                            <div class="demo-step active" id="demo-step-1">
+                                <i class="fas fa-file-upload demo-icon"></i>
+                                <h3>Upload Your Resume</h3>
+                                <p>Our AI analyzes your skills, experience, and qualifications</p>
+                            </div>
+                            <div class="demo-step" id="demo-step-2">
+                                <i class="fas fa-robot demo-icon"></i>
+                                <h3>AI Rewrites & Optimizes</h3>
+                                <p>27 specialized AI agents enhance your resume and create cover letters</p>
+                            </div>
+                            <div class="demo-step" id="demo-step-3">
+                                <i class="fas fa-search demo-icon"></i>
+                                <h3>Smart Job Matching</h3>
+                                <p>AI finds perfect job matches based on your profile and preferences</p>
+                            </div>
+                            <div class="demo-step" id="demo-step-4">
+                                <i class="fas fa-paper-plane demo-icon"></i>
+                                <h3>Auto-Apply</h3>
+                                <p>AI applies to hundreds of jobs while you focus on interviews</p>
+                            </div>
+                            <div class="demo-step" id="demo-step-5">
+                                <i class="fas fa-briefcase demo-icon"></i>
+                                <h3>Get Hired Faster</h3>
+                                <p>Land your dream job in weeks, not months</p>
+                            </div>
+                            <div class="demo-progress">
+                                <div class="demo-progress-dot active" data-step="1"></div>
+                                <div class="demo-progress-dot" data-step="2"></div>
+                                <div class="demo-progress-dot" data-step="3"></div>
+                                <div class="demo-progress-dot" data-step="4"></div>
+                                <div class="demo-progress-dot" data-step="5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-card">
+                        <div class="stats-number">18,759+</div>
+                        <p class="text-muted">Jobs Applied</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-card">
+                        <div class="stats-number">3,428+</div>
+                        <p class="text-muted">Successful Hires</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-card">
+                        <div class="stats-number">98.7%</div>
+                        <p class="text-muted">Satisfaction Rate</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="stats-card">
+                        <div class="stats-number">27</div>
+                        <p class="text-muted">AI Agents</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="section-title">Get Hired in 3 Simple Steps</h2>
+            <p class="lead mb-5">Our AI-powered platform makes job applications effortless and incredibly effective.</p>
+            
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="step">
+                        <div class="step-indicator">1</div>
+                        <div>
+                            <h4>Upload Your Documents</h4>
+                            <p class="text-muted">Upload your resume, professional photo, and qualifications (degrees, diplomas, certificates). Our AI analyzes everything to understand your unique value.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-indicator">2</div>
+                        <div>
+                            <h4>AI Enhancement & Job Matching</h4>
+                            <p class="text-muted">Our synthetic intelligence rewrites your resume, creates personalized cover letters, and matches you with ideal jobs based on your skills and preferences.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-indicator">3</div>
+                        <div>
+                            <h4>Auto-Apply & Track Results</h4>
+                            <p class="text-muted">Sit back while our AI agents apply to hundreds of relevant jobs. Track applications, interviews, and offers in your personal dashboard.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-lg">
+                        <div class="card-body p-4">
+                            <div class="upload-area" id="resumeUploadArea">
+                                <i class="fas fa-file-upload fa-3x text-primary mb-3"></i>
+                                <h5>Upload Your Resume/CV</h5>
+                                <p class="text-muted">PDF, DOC, or DOCX (Max 5MB)</p>
+                                <button class="btn btn-outline-primary mt-2">Choose File</button>
+                            </div>
+                            
+                            <div class="upload-area mt-4" id="photoUploadArea">
+                                <i class="fas fa-camera fa-3x text-primary mb-3"></i>
+                                <h5>Professional Headshot</h5>
+                                <p class="text-muted">JPG or PNG (Max 2MB)</p>
+                                <button class="btn btn-outline-primary mt-2">Choose File</button>
+                            </div>
+                            
+                            <div class="upload-area mt-4" id="qualificationsUploadArea">
+                                <i class="fas fa-graduation-cap fa-3x text-primary mb-3"></i>
+                                <h5>Qualifications & Certificates</h5>
+                                <p class="text-muted">Upload degrees, diplomas, certificates</p>
+                                <button class="btn btn-outline-primary mt-2">Choose Files</button>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <button class="btn btn-primary w-100 btn-lg">Start AI Processing</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#signupModal">Start Your Journey Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Features -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">27 AI Agents Working For You</h2>
+            <p class="lead text-center mb-5">Our specialized AI agents work together 24/7 to optimize every aspect of your job search.</p>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card card p-4 h-100">
+                        <div class="feature-icon text-center">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4 class="text-center">Synthetic Intelligence</h4>
+                        <p class="text-muted">Our SI system understands complex job market dynamics and predicts hiring trends to position you ahead of the competition.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-primary">Market Prediction</span>
+                            <span class="badge bg-primary">Trend Analysis</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card card p-4 h-100">
+                        <div class="feature-icon text-center">
+                            <i class="fas fa-chess-queen"></i>
+                        </div>
+                        <h4 class="text-center">Strategic Intelligence</h4>
+                        <p class="text-muted">Strategic AI plans your entire job search campaign, identifying optimal timing, companies, and negotiation strategies.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-primary">Campaign Planning</span>
+                            <span class="badge bg-primary">Opportunity Scoring</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card card p-4 h-100">
+                        <div class="feature-icon text-center">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h4 class="text-center">Deep Learning Agents</h4>
+                        <p class="text-muted">Our deep agents continuously learn from application outcomes to improve success rates and adapt to market changes.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-primary">Adaptive Learning</span>
+                            <span class="badge bg-primary">Performance Optimization</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card card p-4 h-100">
+                        <div class="feature-icon text-center">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h4 class="text-center">AI Resume Rewriter</h4>
+                        <p class="text-muted">Transforms your resume with ATS optimization, keyword enhancement, and achievement-focused language that gets noticed.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-primary">ATS Optimization</span>
+                            <span class="badge bg-primary">Keyword Enhancement</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card card p-4 h-100">
+                        <div class="feature-icon text-center">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h4 class="text-center">Target Acquisition AI</h4>
+                        <p class="text-muted">Specialized agent focused on acquiring 2000+ paid customers within 7 days through optimized marketing funnels.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-primary">Customer Acquisition</span>
+                            <span class="badge bg-primary">Conversion Optimization</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="feature-card card p-4 h-100">
+                        <div class="feature-icon text-center">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h4 class="text-center">Communication Agent</h4>
+                        <p class="text-muted">Maintains regular contact with customers, requests reviews, gathers testimonials, and ensures high satisfaction.</p>
+                        <div class="mt-3">
+                            <span class="badge bg-primary">Customer Engagement</span>
+                            <span class="badge bg-primary">Review Collection</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#agentsModal">View All 27 AI Agents</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Selection -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Available Across South Africa</h2>
+            <p class="lead text-center mb-5">We're expanding rapidly to cover all 9 provinces with AI-powered job matching.</p>
+            
+            <div class="province-expansion">
+                <h4 class="mb-4">National Expansion Progress</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Western Cape</span>
+                                <span class="fw-bold text-success">100% Complete</span>
+                            </div>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Gauteng</span>
+                                <span class="fw-bold text-success">95% Complete</span>
+                            </div>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>KwaZulu-Natal</span>
+                                <span class="fw-bold text-primary">85% Complete</span>
+                            </div>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Eastern Cape</span>
+                                <span class="fw-bold text-primary">75% Complete</span>
+                            </div>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Free State</span>
+                                <span class="fw-bold text-warning">70% Complete</span>
+                            </div>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Limpopo</span>
+                                <span class="fw-bold text-warning">65% Complete</span>
+                            </div>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Mpumalanga</span>
+                                <span class="fw-bold text-warning">60% Complete</span>
+                            </div>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>North West</span>
+                                <span class="fw-bold text-danger">55% Complete</span>
+                            </div>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 55%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span>Northern Cape</span>
+                                <span class="fw-bold text-danger">50% Complete</span>
+                            </div>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 50%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 text-center">
+                    <p class="text-muted">Full national expansion completion estimated for <strong>Q1 2026</strong></p>
+                </div>
+                
+                <div class="mt-4">
+                    <h5>Can't Find Your Town?</h5>
+                    <p>Our AI automatically adds new towns as customers request them. Add your town below:</p>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Enter your town name" id="newTownInput">
+                        <button class="btn btn-primary" type="button" id="addTownBtn">Add Town</button>
+                    </div>
+                    <p class="text-muted small" id="townFeedback"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Positions -->
+    <section id="positions" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="section-title">Available Job Positions</h2>
+            <p class="lead mb-5">Real-time job tracking with positions moving to "Filled" as candidates are hired.</p>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="position-tracker">
+                        <h4 class="mb-3">Open Positions</h4>
+                        <div id="openPositions">
+                            <!-- Positions will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="position-tracker">
+                        <h4 class="mb-3">Recently Filled</h4>
+                        <div id="filledPositions">
+                            <!-- Filled positions will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">One Simple Price - Maximum Results</h2>
+            <p class="lead text-center mb-5">Everything you need to land your dream job in one affordable package.</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8 mb-4">
+                    <div class="pricing-card card text-center h-100 featured">
+                        <div class="card-body p-5 position-relative">
+                            <span class="badge bg-warning position-absolute top-0 start-50 translate-middle px-3 py-2 fs-6">Most Popular</span>
+                            <h3 class="card-title">CareerBoost Pro</h3>
+                            <div class="price display-2 fw-bold my-4">R500</div>
+                            <p class="text-muted fs-5">One-time payment for full access</p>
+                            <ul class="list-unstyled my-4 text-start">
+                                <li class="mb-3"><i class="fas fa-check text-success me-2 fs-5"></i>AI Resume Rewriting & Optimization</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2 fs-5"></i>Professional Photo Integration</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2 fs-5"></i>Qualifications Analysis & Enhancement</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2 fs-5"></i>Personalized Cover Letters</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2 fs-5"></i>Unlimited Job Applications</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2 fs-5"></i>AI Job Matching & Auto-Apply</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2 fs-5"></i>Application Tracking Dashboard</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2 fs-5"></i>27 AI Agents Working For You</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2 fs-5"></i>Priority Support & Career Coaching</li>
+                                <li class="mb-3"><i class="fas fa-check text-success me-2 fs-5"></i>14-Day Money Back Guarantee</li>
+                            </ul>
+                            <button class="btn btn-primary w-100 btn-lg mt-3" onclick="addToCart('CareerBoost Pro', 500)">Get Started Now</button>
+                            <p class="text-muted mt-3 small">Join 2,154+ job seekers who found work this week</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <p class="text-muted fs-5">14-day money-back guarantee.</p>
+                <div class="payment-methods mt-3">
+                    <span class="fw-bold me-3 fs-5">We accept:</span>
+                    <img src="https://www.payfast.co.za/assets/images/logos/logo.png" alt="PayFast" class="payment-logo">
+                    <img src="https://www.fnb.co.za/images/fnb-logo.svg" alt="FNB" class="payment-logo" style="height: 25px;">
+                    <i class="fab fa-cc-visa text-primary fs-3"></i>
+                    <i class="fab fa-cc-mastercard text-danger fs-3"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="section-title text-center">Success Stories</h2>
+            <p class="lead text-center mb-5">Hear from people who landed their dream jobs with CareerBoost</p>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/women/32.jpg" class="rounded-circle me-3" width="60" alt="User">
+                                <div>
+                                    <h5 class="mb-0">Sarah Johnson</h5>
+                                    <p class="text-muted mb-0">Marketing Manager</p>
+                                    <div class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="card-text">"CareerBoost's AI rewrote my resume and I got 3 interviews in the first week. Landed my dream job at a top agency within 2 weeks! The qualification analysis really highlighted my certifications."</p>
+                            <div class="mt-3">
+                                <span class="badge bg-light text-dark">Before: Unemployed</span>
+                                <span class="badge bg-success">After: R45,000/month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/men/54.jpg" class="rounded-circle me-3" width="60" alt="User">
+                                <div>
+                                    <h5 class="mb-0">David Thompson</h5>
+                                    <p class="text-muted mb-0">Software Developer</p>
+                                    <div class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="card-text">"The automated applications saved me so much time. I applied to 50+ jobs without lifting a finger and got 8 interviews. The AI highlighted my degree and certifications perfectly."</p>
+                            <div class="mt-3">
+                                <span class="badge bg-light text-dark">Before: R25,000/month</span>
+                                <span class="badge bg-success">After: R38,000/month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="https://randomuser.me/api/portraits/women/67.jpg" class="rounded-circle me-3" width="60" alt="User">
+                                <div>
+                                    <h5 class="mb-0">Michelle Peters</h5>
+                                    <p class="text-muted mb-0">Financial Analyst</p>
+                                    <div class="text-warning">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="card-text">"I was struggling to find relevant jobs. CareerBoost not only found them but tailored my applications perfectly. Got hired in 3 weeks! My diploma was presented in the best possible way."</p>
+                            <div class="mt-3">
+                                <span class="badge bg-light text-dark">Before: Contract Work</span>
+                                <span class="badge bg-success">After: R32,000/month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">Share Your Success Story</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="mb-4 display-5 fw-bold">Ready to 10x Your Job Search?</h2>
+            <p class="lead mb-4 fs-4">Join thousands of job seekers who found their dream jobs in weeks, not months.</p>
+            <button class="btn btn-light btn-lg fs-5 addictive-element" data-bs-toggle="modal" data-bs-target="#signupModal">Start Your Free Trial</button>
+            <p class="mt-3">No credit card required • 14-day money back guarantee</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="fas fa-rocket me-2"></i>CareerBoost</h4>
+                    <p>AI-powered job application platform that helps you land your dream job faster.</p>
+                    <p class="mt-2"><strong>Part of Kelnic Solutions</strong></p>
+                    <div class="social-links mt-4">
+                        <a href="#" class="text-white me-3 fs-5"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="text-white me-3 fs-5"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3 fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3 fs-5"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-white fs-5"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#how-it-works" class="text-white-50 text-decoration-none">How It Works</a></li>
+                        <li class="mb-2"><a href="#features" class="text-white-50 text-decoration-none">AI Agents</a></li>
+                        <li class="mb-2"><a href="#pricing" class="text-white-50 text-decoration-none">Pricing</a></li>
+                        <li class="mb-2"><a href="#testimonials" class="text-white-50 text-decoration-none">Success Stories</a></li>
+                        <li class="mb-2"><a href="#positions" class="text-white-50 text-decoration-none">Job Positions</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i><a href="mailto:careerboost@kelnic.co.za" class="text-white-50 text-decoration-none">careerboost@kelnic.co.za</a></li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i><a href="https://wa.me/27845437641" class="text-white-50 text-decoration-none">084 543 7641</a></li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>Cape Town, Western Cape</li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 mb-4">
+                    <h5>AI-Powered Newsletter</h5>
+                    <p class="text-white-50">Get career tips, job market insights, and success stories delivered by our AI.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email" id="newsletterEmail">
+                        <button class="btn btn-primary" type="button" onclick="subscribeNewsletter()">Subscribe</button>
+                    </div>
+                    <p class="small text-white-50 mt-2">Powered by AI Newsletter Agent • Monthly Editions</p>
+                </div>
+            </div>
+            
+            <hr class="bg-white-50">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 CareerBoost by Kelnic Solutions. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white-50 text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-white-50 text-decoration-none">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Your CareerBoost Cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="cartItems">
+                        <!-- Cart items will be loaded here -->
+                    </div>
+                    <div class="d-flex justify-content-between mb-3 mt-4">
+                        <span class="fw-bold">Subtotal</span>
+                        <span class="fw-bold" id="cartSubtotal">R0</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span>Tax</span>
+                        <span>R0</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="fw-bold">Total</span>
+                        <span class="fw-bold" id="cartTotal">R0</span>
+                    </div>
+                    <button class="btn btn-primary w-100" onclick="proceedToCheckout()">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Video Modal -->
+    <div class="modal fade" id="demoModal" tabindex="-1" aria-labelledby="demoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="demoModalLabel">How CareerBoost Works</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="demo-animation">
+                        <div class="demo-step active" id="modal-demo-step-1">
+                            <i class="fas fa-file-upload demo-icon"></i>
+                            <h3>Upload Your Resume</h3>
+                            <p>Our AI analyzes your skills, experience, and qualifications</p>
+                        </div>
+                        <div class="demo-step" id="modal-demo-step-2">
+                            <i class="fas fa-robot demo-icon"></i>
+                            <h3>AI Rewrites & Optimizes</h3>
+                            <p>27 specialized AI agents enhance your resume and create cover letters</p>
+                        </div>
+                        <div class="demo-step" id="modal-demo-step-3">
+                            <i class="fas fa-search demo-icon"></i>
+                            <h3>Smart Job Matching</h3>
+                            <p>AI finds perfect job matches based on your profile and preferences</p>
+                        </div>
+                        <div class="demo-step" id="modal-demo-step-4">
+                            <i class="fas fa-paper-plane demo-icon"></i>
+                            <h3>Auto-Apply</h3>
+                            <p>AI applies to hundreds of jobs while you focus on interviews</p>
+                        </div>
+                        <div class="demo-step" id="modal-demo-step-5">
+                            <i class="fas fa-briefcase demo-icon"></i>
+                            <h3>Get Hired Faster</h3>
+                            <p>Land your dream job in weeks, not months</p>
+                        </div>
+                        <div class="demo-progress">
+                            <div class="demo-progress-dot active" data-step="1"></div>
+                            <div class="demo-progress-dot" data-step="2"></div>
+                            <div class="demo-progress-dot" data-step="3"></div>
+                            <div class="demo-progress-dot" data-step="4"></div>
+                            <div class="demo-progress-dot" data-step="5"></div>
+                        </div>
+                    </div>
+                    <div class="mt-3 text-center">
+                        <button class="btn btn-primary" onclick="startDemo()">Replay Demo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include other modals (login, signup, agents, etc.) -->
+    <!-- ... -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Shopping Cart Functionality
+        let cart = [];
+        
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+            }
+            
+            updateCartDisplay();
+            updateCartCount();
+            
+            // Show cart modal
+            const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
+            cartModal.show();
+        }
+        
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCartDisplay();
+            updateCartCount();
+        }
+        
+        function updateCartCount() {
+            const cartCount = document.getElementById('cartCount');
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+        
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cartItems');
+            const cartSubtotal = document.getElementById('cartSubtotal');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            // Clear existing items
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-muted text-center">Your cart is empty</p>';
+                cartSubtotal.textContent = 'R0';
+                cartTotal.textContent = 'R0';
+                return;
+            }
+            
+            let subtotal = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="mb-0">${item.name}</h6>
+                            <p class="text-muted mb-0">R${item.price} x ${item.quantity}</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <span class="me-3 fw-bold">R${itemTotal}</span>
+                            <i class="fas fa-times cart-item-remove" onclick="removeFromCart('${item.name}')"></i>
+                        </div>
+                    </div>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+            
+            cartSubtotal.textContent = `R${subtotal}`;
+            cartTotal.textContent = `R${subtotal}`;
+        }
+        
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty. Please add items before proceeding to checkout.');
+                return;
+            }
+            
+            alert('Redirecting to secure checkout...');
+            // In a real implementation, this would redirect to payment processor
+        }
+
+        // Demo Animation Functionality
+        let currentStep = 1;
+        let demoInterval;
+        
+        function startDemo() {
+            currentStep = 1;
+            updateDemoStep();
+            
+            // Clear existing interval
+            if (demoInterval) {
+                clearInterval(demoInterval);
+            }
+            
+            // Start automatic progression
+            demoInterval = setInterval(() => {
+                currentStep++;
+                if (currentStep > 5) {
+                    currentStep = 1;
+                }
+                updateDemoStep();
+            }, 3000);
+        }
+        
+        function updateDemoStep() {
+            // Update main demo
+            document.querySelectorAll('.demo-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.getElementById(`demo-step-${currentStep}`).classList.add('active');
+            
+            // Update modal demo if open
+            const modalDemoSteps = document.querySelectorAll('#demoModal .demo-step');
+            if (modalDemoSteps.length > 0) {
+                modalDemoSteps.forEach(step => {
+                    step.classList.remove('active');
+                });
+                document.getElementById(`modal-demo-step-${currentStep}`).classList.add('active');
+            }
+            
+            // Update progress dots
+            document.querySelectorAll('.demo-progress-dot').forEach(dot => {
+                dot.classList.remove('active');
+            });
+            document.querySelectorAll(`.demo-progress-dot[data-step="${currentStep}"]`).forEach(dot => {
+                dot.classList.add('active');
+            });
+        }
+        
+        // Add click handlers to progress dots
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.demo-progress-dot').forEach(dot => {
+                dot.addEventListener('click', function() {
+                    currentStep = parseInt(this.getAttribute('data-step'));
+                    updateDemoStep();
+                    
+                    // Reset interval
+                    if (demoInterval) {
+                        clearInterval(demoInterval);
+                        demoInterval = setInterval(() => {
+                            currentStep++;
+                            if (currentStep > 5) {
+                                currentStep = 1;
+                            }
+                            updateDemoStep();
+                        }, 3000);
+                    }
+                });
+            });
+            
+            // Start demo animation
+            startDemo();
+            
+            // Initialize job positions
+            initializeJobPositions();
+            
+            // Set up smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Sample job positions data
+        const jobPositions = {
+            open: [
+                { title: "Senior Marketing Manager", company: "Tech Solutions Inc", location: "Cape Town", salary: "R45,000 - R55,000", posted: "2 days ago" },
+                { title: "Software Developer", company: "Innovate Labs", location: "Johannesburg", salary: "R35,000 - R45,000", posted: "1 day ago" },
+                { title: "Financial Analyst", company: "Global Finance Corp", location: "Durban", salary: "R38,000 - R48,000", posted: "3 days ago" },
+                { title: "Sales Executive", company: "Growth Partners", location: "Pretoria", salary: "R30,000 - R40,000", posted: "5 days ago" },
+                { title: "Project Manager", company: "BuildRight Construction", location: "Port Elizabeth", salary: "R42,000 - R52,000", posted: "1 day ago" }
+            ],
+            filled: [
+                { title: "HR Manager", company: "People First Ltd", location: "Cape Town", salary: "R40,000 - R50,000", filled: "2 days ago" },
+                { title: "Data Scientist", company: "Analytics Pro", location: "Johannesburg", salary: "R50,000 - R65,000", filled: "1 week ago" },
+                { title: "Customer Service Rep", company: "Service Excellence", location: "Durban", salary: "R18,000 - R25,000", filled: "3 days ago" }
+            ]
+        };
+
+        // Initialize job positions
+        function initializeJobPositions() {
+            const openPositionsContainer = document.getElementById('openPositions');
+            const filledPositionsContainer = document.getElementById('filledPositions');
+            
+            // Clear existing content
+            openPositionsContainer.innerHTML = '';
+            filledPositionsContainer.innerHTML = '';
+            
+            // Add open positions
+            jobPositions.open.forEach(position => {
+                const positionElement = document.createElement('div');
+                positionElement.className = 'job-card card p-3 mb-3';
+                positionElement.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="mb-1">${position.title}</h6>
+                            <p class="text-muted mb-1">${position.company} • ${position.location}</p>
+                            <span class="badge bg-primary">${position.salary}</span>
+                        </div>
+                        <div class="text-end">
+                            <small class="text-muted">${position.posted}</small>
+                            <div class="mt-2">
+                                <button class="btn btn-sm btn-outline-primary">Quick Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                openPositionsContainer.appendChild(positionElement);
+            });
+            
+            // Add filled positions
+            jobPositions.filled.forEach(position => {
+                const positionElement = document.createElement('div');
+                positionElement.className = 'job-card card p-3 mb-3';
+                positionElement.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h6 class="mb-1">${position.title}</h6>
+                            <p class="text-muted mb-1">${position.company} • ${position.location}</p>
+                            <span class="badge bg-secondary">${position.salary}</span>
+                        </div>
+                        <div class="text-end">
+                            <small class="text-muted">Filled ${position.filled}</small>
+                            <div class="mt-2">
+                                <span class="badge bg-success">Position Filled</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                filledPositionsContainer.appendChild(positionElement);
+            });
+        }
+
+        // Town addition functionality
+        document.getElementById('addTownBtn').addEventListener('click', function() {
+            const newTownInput = document.getElementById('newTownInput');
+            const townFeedback = document.getElementById('townFeedback');
+            const newTown = newTownInput.value.trim();
+            
+            if (newTown) {
+                townFeedback.textContent = `Thank you! "${newTown}" has been added to our database and will be available in the next update.`;
+                townFeedback.className = 'text-success small';
+                
+                // Simulate adding to database
+                setTimeout(() => {
+                    // In a real implementation, this would send the data to the server
+                    console.log(`New town added: ${newTown}`);
+                }, 500);
+                
+                newTownInput.value = '';
+            } else {
+                townFeedback.textContent = 'Please enter a valid town name.';
+                townFeedback.className = 'text-danger small';
+            }
+        });
+
+        // Newsletter subscription
+        function subscribeNewsletter() {
+            const email = document.getElementById('newsletterEmail').value;
+            if (email && validateEmail(email)) {
+                alert('Thank you for subscribing to our AI-powered newsletter! You will receive career tips and market insights.');
+                document.getElementById('newsletterEmail').value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Position auto-fill simulation
+        function simulatePositionFilling() {
+            setInterval(() => {
+                if (jobPositions.open.length > 0) {
+                    // Move a random position from open to filled
+                    const randomIndex = Math.floor(Math.random() * jobPositions.open.length);
+                    const filledPosition = jobPositions.open.splice(randomIndex, 1)[0];
+                    filledPosition.filled = 'just now';
+                    jobPositions.filled.unshift(filledPosition);
+                    
+                    // Update the display
+                    initializeJobPositions();
+                    
+                    console.log(`Position filled: ${filledPosition.title} at ${filledPosition.company}`);
+                }
+            }, 30000); // Every 30 seconds for demonstration
+        }
+
+        // Initialize position filling simulation
+        simulatePositionFilling();
+    </script>
+</body>
+</html>
